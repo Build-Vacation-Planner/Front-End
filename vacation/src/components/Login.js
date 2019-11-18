@@ -15,7 +15,7 @@ const Login = props => {
 
     const submitReturningUser = (e, creds) => {
         e.preventDefault();
-        axios.post("https://bw-vacation-planner.herokuapp.com/api/auth/login", creds)
+        axios.post("https://vacation-planner-be.herokuapp.com/api/auth/login", creds)
             .then(res => {
                 props.history.push("/vacation");
                 localStorage.setItem("token", res.data.token);
