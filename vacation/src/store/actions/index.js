@@ -16,12 +16,16 @@ export const fetchUser = () => dispatch => {
 export const START_VACATION_ADD = 'START_VACATION_ADD'
 export const VACATION_ADD_SUCCESS = 'VACATION_ADD_SUCCESS'
 export const VACATION_ADD_FAILURE = 'VACATION_ADD_FAILURE'
-export const addVacation = () => dispatch => {
+export const addVacation = (props) => dispatch => {
+    console.log(`props`, props)
     dispatch({ type:START_VACATION_ADD })
     axiosWithAuth()
-    .post('/vacation/')
-    .then (res => dispatch({type:VACATION_ADD_SUCCESS, payload: res.data}))
-    .catch (err => dispatch({ type: VACATION_ADD_FAILURE, payload:err}))
+    
+    .post('vacations/', props )
+    .then(res => {
+        console.log(res); 
+        dispatch({ type:VACATION_ADD_SUCCESS, payload: res.data });
+      })    .catch (err => dispatch({ type: VACATION_ADD_FAILURE, payload:err}))
 }
 
 export const START_VACATION_UPDATE = 'START_VACATION_UPDATE'
@@ -30,17 +34,17 @@ export const VACATION_UPDATE_FAILURE = 'VACATION_UPDATE_FAILURE'
 export const updateVacation = () => dispatch => {
     dispatch({type: START_VACATION_UPDATE })
     axiosWithAuth()
-    .put('/auth/')
+    .put('vacations/')
     .then (res => dispatch({type:VACATION_UPDATE_SUCCESS, payload: res.data}))
     .catch(err => dispatch({type: VACATION_ADD_FAILURE, payload: err}))
 }
 export const START_VACATION_DELETE = 'START_VACATION_DELETE'
 export const VACATION_SUCCESS_DELETE = 'VACATION_SUCCESS_DELETE'
 export const VACATION_DELETE_FAILURE = 'VACATION_DELETE_FAILURE'
-export const deleteVacation =() => dispatch => {
+export const deleteVacation = (id) => dispatch => {
     dispatch({type:START_VACATION_DELETE})
     axiosWithAuth()
-    .delete('/auth/')
+    .delete(`vacations/${id}`)
     .then (res => dispatch({type: VACATION_SUCCESS_DELETE, payload: res.data}))
     .catch(err => dispatch({type: VACATION_DELETE_FAILURE, payload: err}))
 }
