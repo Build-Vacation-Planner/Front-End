@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import Styled from "styled-components";
 import VacationCard from "./VacationCard";
 import NavBar from "./NavBar"
+import CommentCard from './CommentCard'
 import { connect } from "react-redux";
-import { deleteVacation, addVacation, fetchUser} from '../store/actions'
+import { deleteVacation, addVacation, fetchUser, updateVacation} from '../store/actions'
 
-const Vacation = ({ user, fetchUser, addVacation, deleteVacation }) => {
+const Vacation = ({ user, fetchUser, addVacation, deleteVacation, updateVacation, history }) => {
 
-    const [ newTrip, setNewTrip ] = useState({place: "", dates: ""});
+    const [ newTrip, setNewTrip ] = useState({name: "", place: ""});
 
     
     useEffect(() => {
@@ -22,13 +23,14 @@ const Vacation = ({ user, fetchUser, addVacation, deleteVacation }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         addVacation(newTrip);
-        setNewTrip({title: "", place: "", dates: ""});
+        console.log(`newtrip`, newTrip )
+        setNewTrip({ name: "", place: ""});
     }
     console.log(user)
     
     return (
         <div>
-            <NavBar/>
+            <NavBar history={history}/>
             <h2>My Trips</h2>
             <div>
                 <StyledForm onSubmit={e => handleSubmit(e, newTrip)}>
@@ -37,29 +39,36 @@ const Vacation = ({ user, fetchUser, addVacation, deleteVacation }) => {
                         <Label>
                             Where to? </Label>
                             <StyledInput
+                                name="name"
+                                value={newTrip.name}
+                                onChange={handleChange}
+                                placeholder='vacation idea'
+                            />
+                            <StyledInput
                                 name="place"
                                 value={newTrip.place}
                                 onChange={handleChange}
+                                placeholder='place'
                             />
-                        
-                        <Label>
+
+                        {/* <Label>
                             Suggested dates?</Label>
                             <StyledInput
-                                name="dates"
-                                value={newTrip.dates}
+                                name="place"
+                                value={newTrip.date}
                                 onChange={handleChange}
-                            />
+                            /> */}
                         
                       
                     <StyledButton>Add Trip</StyledButton>
                 </StyledForm>
             </div>
             <Container>
-                
                 {user.vacations.map(vacation => {
                 console.log(vacation)
                 return <VacationCard key={vacation.id} deleteVacation={deleteVacation} vacation={vacation}/>})
                 }
+                <CommentCard />
             </Container>
         </div>
     );
@@ -73,7 +82,7 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, { deleteVacation, addVacation, fetchUser})(Vacation);
+export default connect(mapStateToProps, { deleteVacation, addVacation, fetchUser, updateVacation})(Vacation);
 
 
 
