@@ -1,31 +1,73 @@
-import {
+
+
+import { 
+    START_VACATION_ADD,
+    VACATION_ADD_SUCCESS,
+    VACATION_ADD_FAILURE,
+    START_VACATION_UPDATE,
+    VACATION_UPDATE_SUCCESS,
+    VACATION_UPDATE_FAILURE,
+    START_VACATION_DELETE,
+    VACATION_SUCCESS_DELETE,
+    VACATION_DELETE_FAILURE,
+    START_COMMENT,
+    COMMENT_ADD_SUCCESS,
+    COMMENT_ADD_FAILURE,
+    COMMENT_UPDATE,
+    COMMENT_UPDATE_SUCCESS,
+    COMMENT_UPDATE_FAILURE,
+    DELETE_COMMENT,
+    DELETE_SUCCESS,
+    DELETE_FAILURE,
+    START_ACTIVITY,
+    ACTIVITY_ADD_SUCCESS,
+    ACTIVITY_ADD_FAILURE,
+    UPDATE_ACTIVITY,
+    ACTIVITY_UPDATE_SUCCESS,
+    ACTIVITY_UPDATE_FAILURE,
+    DELETE_ACTIVITY,
+    ACTIVITY_DELETE_SUCCESS,
+    ACTIVITY_DELETE_FAILURE,
+    START_USER_ADD,
+    USER_ADD_SUCCESS,
+    USER_ADD_FAILURE,
+    UPDATE_USER,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_FAILURE,
+    DELETE_USER,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_FAILURE} from '../actions'
+
+import { 
+    LOGIN_START,
+    LOGIN_SUCCESS, 
+    LOGIN_FAILURE,
     REGISTER_START,
     REGISTER_SUCCESS,
-    REGISTER_FAILURE,
+    REGISTER_FAILURE} from "../actions";
 
-    LOGIN_START,
-    LOGIN_SUCCESS,
-    LOGIN_FAILURE,
-
-    SAVE_ITEM,
-
-    FETCHING_COMMENTS_START,
-    FETCHING_COMMENTS_SUCCESS,
-
-    SAVING_COMMENTS_START,
-    SAVING_COMMENTS_SUCCESS,
-    SAVING_COMMENTS_FAILURE
-
-} from '../actions'
 
 const initialState = {
-    items:[],
-    errors:'',
-    isFetching: false
+    id: null,
+    name:'',
+    avatar:'',
+    vacations:[
+      {
+        place:'',
+        dates:{},
+        activities: [],
+        comments:[],
+        users:[],
+      }
+    ],
+    isFetching: false,
+    errors:''
 }
 
-export const rootReducer = (state = initialState, {type, payload}) => {
-    switch(type){
+
+export const rootReducer = (state = initialState, action) => {
+    switch(action.type){
+
         case LOGIN_START:
             return{
                 ...state,
@@ -36,13 +78,13 @@ export const rootReducer = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 errors: '',
-                items: payload,
+                name: action.payload,
                 isFetching: false
             }
         case LOGIN_FAILURE:
             return{
                 ...state,
-                errors:payload,
+                errors:action.payload,
                 isFetching:false
             }
         case REGISTER_START:
@@ -54,33 +96,18 @@ export const rootReducer = (state = initialState, {type, payload}) => {
         case REGISTER_SUCCESS:
             return{
                 ...state,
-                items:payload,
+                name:action.payload,
                 isFetching:false,
                 errors:''
             }
         case REGISTER_FAILURE:
             return{
                 ...state,
-                errors:payload
+                errors:action.payload
             }
-        case SAVING_COMMENTS_START:
-            return{
-                ...state,
-                isFetching:true,
-                errors:''
-            }
-        case SAVING_COMMENTS_SUCCESS:
-            return{
-                ...state,
-                items: payload,
-                isFetching:false,
-                errors:''
-            }
-        case SAVING_COMMENTS_FAILURE:
-            return{
-                ...state,
-                error:payload
-            }
+        
+        
+            
         default:
             return state
     }
