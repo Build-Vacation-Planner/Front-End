@@ -1,34 +1,31 @@
 import React, { useState, useEffect } from "react";
 import Styled from "styled-components";
 import VacationCard from "./VacationCard";
-import NavBar from "./Nav";
+import NavBar from "./NavBar"
 import { connect } from "react-redux";
-import { deleteVacation, addVacation} from '../store/actions'
+import { deleteVacation, addVacation, fetchUser} from '../store/actions'
 
-const Vacation = ({ vacations, deleteVacation, addVacation}) => {
+const Vacation = ({ user, fetchUser, addVacation, deleteVacation }) => {
 
     const [ newTrip, setNewTrip ] = useState({place: "", dates: ""});
 
     
     useEffect(() => {
-        
+        fetchUser()
     }, [])
-
-
-
     /*Create a new trip*/
     const handleChange = e => {
         const {name, value} = e.target;
         setNewTrip({...newTrip, [name]: value})
     }
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         addVacation(newTrip);
         setNewTrip({title: "", place: "", dates: ""});
     }
-
+    console.log(user)
+    
     return (
         <div>
             <NavBar/>
@@ -58,22 +55,25 @@ const Vacation = ({ vacations, deleteVacation, addVacation}) => {
                 </StyledForm>
             </div>
             <Container>
-                {vacations.map(vacation => <VacationCard key={vacation.id} deleteVacation={deleteVacation} vacation={vacation}/>)}
+                
+                {user.vacations.map(vacation => {
+                console.log(vacation)
+                return <VacationCard key={vacation.id} deleteVacation={deleteVacation} vacation={vacation}/>})
+                }
             </Container>
         </div>
     );
 }
 
-
 const mapStateToProps = state => {
     
     return {
-        vacations: state.rootReducer.vacations
-        console.log(`state`, state)
+        user: state
+        
     }
 };
 
-export default connect(mapStateToProps, { deleteVacation, addVacation})(Vacation);
+export default connect(mapStateToProps, { deleteVacation, addVacation, fetchUser})(Vacation);
 
 
 

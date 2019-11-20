@@ -7,7 +7,7 @@ import Signup from "./components/Signup";
 import PrivateRoute from './utils/PrivateRoute';
 import CommentCard from "./components/CommentCard";
 import ActivityCard from "./components/ActivityCard";
-import VacationCard from "./components/VacationCard";
+import Vacation from "./components/Vacation";
 
 function App() {
   return (
@@ -15,8 +15,8 @@ function App() {
       <BrowserRouter>
 
         <PrivateRoute 
-          exact path='/vacationcard' 
-          component={VacationCard} 
+          exact path='/vacation' 
+          component={Vacation} 
           />
 
         <PrivateRoute 

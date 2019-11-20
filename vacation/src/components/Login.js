@@ -18,11 +18,11 @@ const Login = props => {
     const submitReturningUser = (e) => {
         e.preventDefault();
         axiosWithAuth()
-        .post ('/auth/login', returningUser)
+        .post('/auth/login', returningUser)
             .then(res => {
                 
                 localStorage.setItem("token", res.data.token);
-                props.history.push("/vacationcard");
+                props.history.push("/vacation");
             })
             .catch(err => console.log(err));
     }

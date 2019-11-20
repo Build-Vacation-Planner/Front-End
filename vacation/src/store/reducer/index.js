@@ -1,4 +1,5 @@
 
+import {START_FETCH_USER, FETCH_USER_FAILURE, FETCH_USER_SUCCESS} from  '../actions'
 
 import { 
     START_VACATION_ADD,
@@ -51,7 +52,9 @@ import {
 
 
 const initialState = {
-    
+    id: null,
+    username: null,
+    avatar: null,
     vacations:[
       {
         id: null,
@@ -59,14 +62,15 @@ const initialState = {
         description:'',
         place:'',
         picture:'',
-        dates:{},
+        dates:{
+            start: "",
+            end: ""
+        },
         activities: [],
         comments:[],
         users:[],
         
-      }
-    ]
-    ,
+      }],
     isFetching: false,
     errors:''
 }
@@ -74,7 +78,12 @@ const initialState = {
 
 export const rootReducer = (state = initialState, action) => {
     switch(action.type){
-
+        case FETCH_USER_FAILURE:
+        return {...state, errors: action.payload, isFetching: false}
+        case FETCH_USER_SUCCESS:
+        return { ...action.payload, isFetching: false, errors: ""}
+        case START_FETCH_USER:
+        return { ...state, isFetching: true, errors: ""}
         case LOGIN_START:
             return{
                 ...state,

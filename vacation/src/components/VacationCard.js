@@ -2,15 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Styled from "styled-components";
 
-const VacationCard = props => {
-    console.log(props)
+const VacationCard = ({vacation, deleteTrip}) => {
+    console.log(vacation)
+    console.log(vacation.dates)
+
+    const renderCard = () => {
+        return (<Card className="vacation-card">
+            <p><strong>Place: </strong>{vacation.place}</p>
+            <p><strong>Dates: </strong>{ vacation.dates ? vacation.dates.start:""} - {vacation.dates ? vacation.dates.end:""} </p>
+            <button onClick={() => deleteTrip(vacation.vacation_id)}>Delete</button>
+            <Link to={`/vacation/${vacation.vacation_id}`}>Details</Link>
+        </Card>)
+    }
     return (
-        <Card className="vacation-card">
-            <p><strong>Place: </strong>{props.vacation.place}</p>
-            <p><strong>Dates: </strong>{props.vacation.dates}</p>
-            <button onClick={() => props.deleteTrip(props.vacation.vacation_id)}>Delete</button>
-            <Link to={`/vacation/${props.vacation.vacation_id}`}>Details</Link>
-        </Card>
+        <>
+        {vacation ? renderCard(): null}
+        </>
+        
     );
 }
 

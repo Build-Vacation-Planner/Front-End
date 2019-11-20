@@ -2,6 +2,17 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { connect } from 'react-redux'
 
 
+export const START_FETCH_USER = 'START_FETCH_USER'
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS'
+export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE'
+export const fetchUser = () => dispatch => {
+    dispatch({ type:START_FETCH_USER  })
+    axiosWithAuth()
+    .get('users/')
+    .then (res => dispatch({type:FETCH_USER_SUCCESS, payload: res.data}))
+    .catch (err => dispatch({ type: FETCH_USER_FAILURE, payload: err}))
+}
+
 export const START_VACATION_ADD = 'START_VACATION_ADD'
 export const VACATION_ADD_SUCCESS = 'VACATION_ADD_SUCCESS'
 export const VACATION_ADD_FAILURE = 'VACATION_ADD_FAILURE'
