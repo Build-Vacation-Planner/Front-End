@@ -4,6 +4,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import CommentCard from "./components/CommentCard";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
       <Route exact path="/" component={Login} />
       <Route path="/signup" render={() => <Signup />} />
+      <Route path="/comments" render={() => <CommentCard />} />
       </BrowserRouter>  
     </div>
   );
