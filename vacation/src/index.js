@@ -8,7 +8,10 @@ import {rootReducer} from '../src/store/reducer'
 import thunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
 import * as serviceWorker from './serviceWorker';
-const store = createStore(rootReducer, applyMiddleware(thunk))
+import logger from 'redux-logger';
+
+
+const store = createStore(rootReducer, applyMiddleware(thunk, logger))
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

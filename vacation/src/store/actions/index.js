@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 export const START_VACATION_ADD = 'START_VACATION_ADD'
 export const VACATION_ADD_SUCCESS = 'VACATION_ADD_SUCCESS'
 export const VACATION_ADD_FAILURE = 'VACATION_ADD_FAILURE'
-export const getVaction = () => dispatch => {
-    dispatch({type:START_VACATION_ADD})
+export const addVacation = () => dispatch => {
+    dispatch({ type:START_VACATION_ADD })
     axiosWithAuth()
-    .post('/auth/')
+    .post('/vacation/')
     .then (res => dispatch({type:VACATION_ADD_SUCCESS, payload: res.data}))
     .catch (err => dispatch({ type: VACATION_ADD_FAILURE, payload:err}))
 }
@@ -16,7 +16,7 @@ export const getVaction = () => dispatch => {
 export const START_VACATION_UPDATE = 'START_VACATION_UPDATE'
 export const VACATION_UPDATE_SUCCESS = 'VACATION_UPDATE_SUCCESS'
 export const VACATION_UPDATE_FAILURE = 'VACATION_UPDATE_FAILURE'
-export const addVacation = () => dispatch => {
+export const updateVacation = () => dispatch => {
     dispatch({type: START_VACATION_UPDATE })
     axiosWithAuth()
     .put('/auth/')

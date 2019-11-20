@@ -15,14 +15,14 @@ const Login = props => {
         setReturningUser({...returningUser, [name]: value})
     }
 
-    const submitReturningUser = (e, creds) => {
+    const submitReturningUser = (e) => {
         e.preventDefault();
-        // axios.post("https://vacation-planner-be.herokuapp.com/api/auth/login", creds)
         axiosWithAuth()
         .post ('/auth/login', returningUser)
             .then(res => {
-                props.history.push("/vacationDashboard");
-                localStorage.setItem("token", res.data.payload);
+                
+                localStorage.setItem("token", res.data.token);
+                props.history.push("/vacationcard");
             })
             .catch(err => console.log(err));
     }
@@ -34,15 +34,19 @@ const Login = props => {
             <StyledH3>Sign in here.</StyledH3>
             <Label>Enter Username</Label>
             <StyledInput
+                type='text'
                 name="username"
                 value={returningUser.username}
                 onChange={handleReturningUser}
+                placeholder='username'
             />
             <Label>Enter Password</Label>
             <StyledInput
+                type="password"
                 name="password"
                 value={returningUser.password}
                 onChange={handleReturningUser}
+                placeholder='password'
             />
             <StyledButton >Login</StyledButton>
         </StyledForm>

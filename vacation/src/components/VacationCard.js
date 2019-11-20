@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Styled from "styled-components";
 
 const VacationCard = props => {
+    console.log(props)
     return (
         <Card className="vacation-card">
             <p><strong>Place: </strong>{props.vacation.place}</p>

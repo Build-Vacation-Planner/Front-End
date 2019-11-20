@@ -13,23 +13,25 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Route exact path="/" component={Login} />
-      <Route path="/signup" render={() => <Signup />} />
 
-      {/* <PrivateRoute 
-        exact path='/protected' 
-        component={vacationDashboard} 
-        /> */}
+        <PrivateRoute 
+          exact path='/vacationcard' 
+          component={VacationCard} 
+          />
 
-      {/* <PrivateRoute 
-        exact path='/protected/:id' 
-        component={} 
-         /> */}
-      <Route exact path="/" component={Login} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/vacationcard" render={() => <VacationCard />} />   
-      <Route path="/comments" render={() => <CommentCard />} />
-      <Route path="/activity" render={() => <ActivityCard />} />
+        <PrivateRoute 
+          exact path='/commentcard/:id' 
+          component={CommentCard} 
+          />
+
+        <PrivateRoute 
+          exact path='/activitycard/:id' 
+          component={ActivityCard} 
+          />
+          
+        <Route exact path="/" component={Login} />
+        <Route path="/signup" component={Signup} />
+      
       </BrowserRouter>  
     </div>
   );
