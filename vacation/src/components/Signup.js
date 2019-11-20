@@ -4,22 +4,30 @@ import Styled from 'styled-components';
 import "./Signup.css";
 
 const Signup = () => {
-    const [newUser, setNewUser] = useState({username: "", password: ""});
+    const [newUser, setNewUser] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        console.log(newUser);
+        console.log(password);
+    }
+    
     return (
         <div>
             <div className="top">
                 <h2>Sign Up</h2>
-                <StyledForm>
+                <StyledForm onSubmit={event => handleSubmit(event)}>
                     <Label>
                         Enter Email
                         <br />
-                        <StyledInput id="email" type="email" />
+                        <StyledInput id="email" type="email" onChange={event => setNewUser(event.target.value)} />
                         <br />
                     </Label>
                     <label>
                         Create Password
                         <br />
-                        <input id="password" type="text" />
+                        <input id="password" type="text" onChange={event => setPassword(event.target.value)} />
                         <br />
                     </label>
                     <label>
