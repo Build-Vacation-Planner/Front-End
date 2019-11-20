@@ -17,7 +17,9 @@ const VacationCard = ({vacation, deleteVacation}) => {
             })} */}
 
             <p><strong>Dates: </strong>{ vacation.dates ? vacation.dates.start:""} - {vacation.dates ? vacation.dates.end:""} </p>
+
             <button onClick={() => deleteVacation(vacation.id)}>Delete</button>
+            
             <Link to={`/vacation/${vacation.id}`}>Details</Link>
         </Card>)
     }

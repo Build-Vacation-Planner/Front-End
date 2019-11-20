@@ -42,13 +42,13 @@ const Vacation = ({ user, fetchUser, addVacation, deleteVacation, updateVacation
                                 name="name"
                                 value={newTrip.name}
                                 onChange={handleChange}
-                                placeholder='city'
+                                placeholder='vacation idea'
                             />
                             <StyledInput
                                 name="place"
                                 value={newTrip.place}
                                 onChange={handleChange}
-                                placeholder='place to go'
+                                placeholder='place'
                             />
 
                         {/* <Label>
