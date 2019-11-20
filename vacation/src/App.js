@@ -5,6 +5,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import PrivateRoute from './utils/PrivateRoute';
+import CommentCard from "./components/CommentCard";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         component={} 
          /> */}
          
+      <Route path="/comments" render={() => <CommentCard />} />
       </BrowserRouter>  
     </div>
   );
