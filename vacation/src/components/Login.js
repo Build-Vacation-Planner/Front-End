@@ -3,7 +3,6 @@ import "./Login.css";
 import Styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { connect } from "react-redux";
  
@@ -52,6 +51,13 @@ const Login = props => {
     );
 }
 
+function validateUsername(username) {
+    let error;
+    if (username === 'admin') {
+      error = 'Nice try!';
+    }
+    return error;
+  }
 
 export default Login;
 
