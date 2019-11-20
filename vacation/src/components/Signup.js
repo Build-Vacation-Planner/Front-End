@@ -4,6 +4,7 @@ import Styled from 'styled-components';
 import "./Signup.css";
 import axios from "axios";
 
+
 const Signup = (props) => {
     const [newUser, setNewUser] = useState({username: "", password: ""});
 
@@ -19,14 +20,19 @@ const Signup = (props) => {
         setNewUser({...newUser, [name]:value})
     }
 
+
+
     return (
         <div>
             <div className="top">
                 <h2>Sign Up</h2>
+
                 <StyledForm onSubmit={e => submitHandler (e, newUser)}>
+
                     <Label>
                         Enter Username
                         <br />
+
                         <StyledInput
                          
                          type='text' 
@@ -36,6 +42,9 @@ const Signup = (props) => {
                          onChange={changeHandler}
                          
                          />
+
+                        
+
                         <br />
                     </Label>
                     <label>
@@ -49,6 +58,7 @@ const Signup = (props) => {
                          onChange={changeHandler}
 
                          />
+
                         <br />
 
                     </label>

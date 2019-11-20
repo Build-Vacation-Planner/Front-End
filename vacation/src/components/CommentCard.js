@@ -6,9 +6,14 @@ import { connect } from 'react-redux'
 
 const CommentCard = () => {
     const [commentInput, setCommentInput] = useState();
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        console.log(commentInput);
+    }
     return (
         <div>
-            <StyledForm method="post" className="comment_form">
+            <StyledForm method="post" className="comment_form" onSubmit={event => handleSubmit(event)}>
                 <CommentInput id="comment_input" className="expanded_text_area" type="text" placeholder="Add comment..." onChange={event => {
             setCommentInput(event.target.value);
           }}/>
