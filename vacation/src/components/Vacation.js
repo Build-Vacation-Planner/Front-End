@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Styled from "styled-components";
-import VacationListCard from "./VacationCard";
+import VacationCard from "./VacationCard";
 import NavBar from "./Nav";
+import { connect } from "react-redux";
+import { deleteVacation, addVacation} from '../store/actions'
 
-
-const Vacations = ({ vacations, getTrips, deleteTrip, addNewTrip}) => {
+const Vacation = ({ vacations, deleteVacation, addVacation}) => {
 
     const [ newTrip, setNewTrip ] = useState({place: "", dates: ""});
 
     
     useEffect(() => {
-        getTrips();
+        
     }, [])
 
 
@@ -24,7 +25,7 @@ const Vacations = ({ vacations, getTrips, deleteTrip, addNewTrip}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addNewTrip(newTrip);
+        addVacation(newTrip);
         setNewTrip({title: "", place: "", dates: ""});
     }
 
@@ -52,12 +53,12 @@ const Vacations = ({ vacations, getTrips, deleteTrip, addNewTrip}) => {
                                 onChange={handleChange}
                             />
                         
-                        </Label>
+                      
                     <StyledButton>Add Trip</StyledButton>
                 </StyledForm>
             </div>
             <Container>
-                {vacations.map(vacation => <VacationListCard key={vacation.vacation_id} deleteTrip={deleteTrip} vacation={vacation}/>)}
+                {vacations.map(vacation => <VacationCard key={vacation.id} deleteVacation={deleteVacation} vacation={vacation}/>)}
             </Container>
         </div>
     );
@@ -65,12 +66,14 @@ const Vacations = ({ vacations, getTrips, deleteTrip, addNewTrip}) => {
 
 
 const mapStateToProps = state => {
+    
     return {
-        vacations: state.vacations
+        vacations: state.rootReducer.vacations
+        console.log(`state`, state)
     }
 };
 
-export default connect(mapStateToProps, {getTrips, deleteTrip, addNewTrip})(Vacations);
+export default connect(mapStateToProps, { deleteVacation, addVacation})(Vacation);
 
 
 

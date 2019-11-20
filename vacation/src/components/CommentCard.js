@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Styled from 'styled-components';
+import { connect } from 'react-redux'
+
+
 
 const CommentCard = () => {
     const [commentInput, setCommentInput] = useState();
