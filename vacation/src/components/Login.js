@@ -3,7 +3,9 @@ import "./Login.css";
 import Styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { connect } from "react-redux";
+ 
 const Login = props => {
 
     const [ returningUser, setReturningUser ] = useState({ username: "", password: ""});
@@ -15,10 +17,12 @@ const Login = props => {
 
     const submitReturningUser = (e, creds) => {
         e.preventDefault();
-        axios.post("https://vacation-planner-be.herokuapp.com/api/auth/login", creds)
+        // axios.post("https://vacation-planner-be.herokuapp.com/api/auth/login", creds)
+        axiosWithAuth()
+        .post ('/auth/login', returningUser)
             .then(res => {
-                props.history.push("/vacation");
-                localStorage.setItem("token", res.data.token);
+                props.history.push("/vacationDashboard");
+                localStorage.setItem("token", res.data.payload);
             })
             .catch(err => console.log(err));
     }
@@ -26,7 +30,7 @@ const Login = props => {
     return (
         <div>
         <h2>Login</h2>
-        <StyledForm onSubmit={(e) => submitReturningUser(e, returningUser)}>
+        <StyledForm onSubmit={submitReturningUser}>
             <StyledH3>Sign in here.</StyledH3>
             <Label>Enter Username</Label>
             <StyledInput
@@ -40,12 +44,20 @@ const Login = props => {
                 value={returningUser.password}
                 onChange={handleReturningUser}
             />
-            <StyledButton>Login</StyledButton>
+            <StyledButton >Login</StyledButton>
         </StyledForm>
         <StyledParagraph>Don't have an account? Sign up <Link to="/signup">here</Link>.</StyledParagraph>
         </div>
     );
 }
+
+function validateUsername(username) {
+    let error;
+    if (username === 'admin') {
+      error = 'Nice try!';
+    }
+    return error;
+  }
 
 export default Login;
 
