@@ -7,7 +7,7 @@ import {Provider} from 'react-redux'
 import {rootReducer} from '../src/store/reducer'
 import thunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
-
+import * as serviceWorker from './serviceWorker';
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
@@ -16,6 +16,3 @@ ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementB
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
-ReactDOM.render(<App />, document.getElementById("root"));
-
