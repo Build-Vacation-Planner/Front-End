@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { addVacation, fetchUser} from '../store/actions'
 const Vacation = ({ user, fetchUser, addVacation, history }) => {
 
-    const [ newTrip, setNewTrip ] = useState({name: "", place: ""});
+    const [ newTrip, setNewTrip ] = useState({name: "", place: "" , date:'', activities:''});
 
     
     useEffect(() => {
@@ -24,7 +24,7 @@ const Vacation = ({ user, fetchUser, addVacation, history }) => {
         e.preventDefault();
         addVacation(newTrip);
         console.log(`newtrip`, newTrip )
-        setNewTrip({ name: "", place: ""});
+        setNewTrip({ name: "", place: "", date:'', activities:''});
     }
     console.log(user)
     
@@ -40,6 +40,7 @@ const Vacation = ({ user, fetchUser, addVacation, history }) => {
                             Where to? </Label>
                             <StyledInput
                                 name="name"
+                                type='text'
                                 value={newTrip.name}
                                 onChange={handleChange}
                                 placeholder='vacation idea'
@@ -49,18 +50,26 @@ const Vacation = ({ user, fetchUser, addVacation, history }) => {
 
                             <StyledInput
                                 name="place"
+                                type='text'
                                 value={newTrip.place}
                                 onChange={handleChange}
                                 placeholder='place'
                             />
-
-                        {/* <Label>
+                            {/* <StyledInput
+                                name="activities"
+                                type='text'
+                                value={newTrip.activities}
+                                onChange={handleChange}
+                                placeholder='activities'
+                            /> */}
+                        <Label>
                             Suggested dates?</Label>
                             <StyledInput
-                                name="place"
+                                name="date"
+                                type='date'
                                 value={newTrip.date}
                                 onChange={handleChange}
-                            /> */}
+                            />
                         
                       
                     <StyledButton>Add Trip</StyledButton>
