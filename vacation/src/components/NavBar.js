@@ -33,14 +33,8 @@ const Container = Styled.div`
 
 const Logout = Styled.button`
     height: 50px;
+color: blue;
     border-radius: 5px;
     width: 90px;
-    font-size: 20px;
-`
-const Marketing = Styled.button`
-    height: 50px;
-    border-radius: 5px;
-    width: 90px;
-    background: blue;
     font-size: 20px;
 `
