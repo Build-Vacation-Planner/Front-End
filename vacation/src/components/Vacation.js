@@ -43,6 +43,9 @@ const Vacation = ({ user, fetchUser, addVacation, history }) => {
                                 onChange={handleChange}
                                 placeholder='vacation idea'
                             />
+
+      <Message>Vacation Idea is required.</Message>
+
                             <StyledInput
                                 name="place"
                                 value={newTrip.place}
@@ -145,3 +148,7 @@ const Container = Styled.div`
     justify-content: space-between;
     flex-wrap: wrap;
 `
+const Message = Styled.label`
+margin-bottom: 2px;
+color: red;
+`;
