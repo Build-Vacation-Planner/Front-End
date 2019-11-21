@@ -2,43 +2,78 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Styled from 'styled-components';
 import "./Signup.css";
+import axios from "axios";
 
-const Signup = () => {
-    const [newUser, setNewUser] = useState({email: "", password: ""});
 
-    const handleChanges = event => {
-        setNewUser({...newUser, [event.target.name]: event.target.value});
-    };
+const Signup = (props) => {
+    const [newUser, setNewUser] = useState({username: "", password: ""});
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        console.log(newUser);
-        console.log(password);
+    const submitHandler = (e, userReg) => {
+        e.preventDefault()
+        axios.post("https://vacation-planner-be.herokuapp.com/api/auth/register", userReg)
+        .then(res => {props.history.push('/')})
+        .catch(err => console.log(err));
     }
-    
+
+    const changeHandler = (e) => {
+        const{name, value} = e.target;
+        setNewUser({...newUser, [name]:value})
+    }
+
+
+
     return (
         <div>
             <div className="top">
                 <h2>Sign Up</h2>
-                <StyledForm onSubmit={event => handleSubmit(event)}>
+
+                <StyledForm onSubmit={e => submitHandler (e, newUser)}>
+
                     <Label>
-                        Enter Email
+                        Enter Username
                         <br />
-                        <StyledInput id="email" type="email" name="email" onChange={event => handleChanges(event)} />
+
+                        <StyledInput
+                         
+                         type='text' 
+                         name='username'
+                         placeholder='username'
+                         value={newUser.username}
+                         onChange={changeHandler}
+                         
+                         />
+
+                        
+
                         <br />
                     </Label>
                     <label>
                         Create Password
                         <br />
-                        <StyledInput id="password" type="text" name="password" onChange={event => handleChanges(event)} />
+                        <input
+                         type='password'
+                         name='password'
+                         placeholder='password'
+                         value={newUser.password}
+                         onChange={changeHandler}
+
+                         />
+
                         <br />
+
                     </label>
-                    <label>
+                    {/* <label>
                         Confirm Password
                         <br />
-                        <input id="confirm_password" type="text" />
+                        <input 
+                            type='password'
+                            name='password'
+                            placeholder='password'
+                            value={newUser.password}
+                            onChange={changeHandler}
+                        />
                         <br />
-                    </label>
+                    </label> */}
                     <StyledButton>Sign Up</StyledButton>
                     <br />
                     <StyledParagraph>Already have an account? Sign in <Link to="/">here</Link>.</StyledParagraph>

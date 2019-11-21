@@ -1,4 +1,5 @@
 
+import {START_FETCH_USER, FETCH_USER_FAILURE, FETCH_USER_SUCCESS} from  '../actions'
 
 import { 
     START_VACATION_ADD,
@@ -10,6 +11,7 @@ import {
     START_VACATION_DELETE,
     VACATION_SUCCESS_DELETE,
     VACATION_DELETE_FAILURE,
+
     START_COMMENT,
     COMMENT_ADD_SUCCESS,
     COMMENT_ADD_FAILURE,
@@ -19,6 +21,7 @@ import {
     DELETE_COMMENT,
     DELETE_SUCCESS,
     DELETE_FAILURE,
+
     START_ACTIVITY,
     ACTIVITY_ADD_SUCCESS,
     ACTIVITY_ADD_FAILURE,
@@ -28,6 +31,7 @@ import {
     DELETE_ACTIVITY,
     ACTIVITY_DELETE_SUCCESS,
     ACTIVITY_DELETE_FAILURE,
+
     START_USER_ADD,
     USER_ADD_SUCCESS,
     USER_ADD_FAILURE,
@@ -49,17 +53,24 @@ import {
 
 const initialState = {
     id: null,
-    name:'',
-    avatar:'',
+    username: null,
+    avatar: null,
     vacations:[
       {
+        id: null,
+        name:'',
+        description:'',
         place:'',
-        dates:{},
+        picture:'',
+        dates:{
+            start: "",
+            end: ""
+        },
         activities: [],
         comments:[],
         users:[],
-      }
-    ],
+        
+      }],
     isFetching: false,
     errors:''
 }
@@ -67,7 +78,12 @@ const initialState = {
 
 export const rootReducer = (state = initialState, action) => {
     switch(action.type){
-
+        case FETCH_USER_FAILURE:
+        return {...state, errors: action.payload, isFetching: false}
+        case FETCH_USER_SUCCESS:
+        return { ...action.payload, isFetching: false, errors: ""}
+        case START_FETCH_USER:
+        return { ...state, isFetching: true, errors: ""}
         case LOGIN_START:
             return{
                 ...state,
@@ -84,8 +100,9 @@ export const rootReducer = (state = initialState, action) => {
         case LOGIN_FAILURE:
             return{
                 ...state,
-                errors:action.payload,
-                isFetching:false
+                isFetching:false,
+                errors: action.payload
+                
             }
         case REGISTER_START:
             return{
@@ -103,11 +120,237 @@ export const rootReducer = (state = initialState, action) => {
         case REGISTER_FAILURE:
             return{
                 ...state,
-                errors:action.payload
+                isFetching: false,
+                errors: action.payload
             }
-        
-        
-            
+        case START_COMMENT:
+            return{
+                ...state,
+                isFetching:true,
+                errors:'',
+            }
+        case COMMENT_ADD_SUCCESS:
+            return{
+                ...state,
+                comments:action.payload,
+                isFetching: false,
+                errors:''
+            }
+        case COMMENT_ADD_FAILURE:
+            return{
+                ...state,
+                isFetching: false,
+                errors: action.payload
+            }
+        case COMMENT_UPDATE:
+            return {
+                ...state,
+                isFetching: true,
+                errors:''
+            }
+        case COMMENT_UPDATE_SUCCESS:
+            return{
+                ...state,
+                isFetching: false,
+                comments:action.payload,
+                errors: ''
+            }
+        case COMMENT_UPDATE_FAILURE:
+            return{
+                ...state,
+                isFetching: false,
+                errors: action.payload
+            }
+        case DELETE_COMMENT:
+            return{
+                ...state,
+                isFetching:true,
+                errors:''
+            }
+        case DELETE_SUCCESS:
+            return{
+                ...state,
+                isFetching: false,
+                comments: action.payload,
+                errors:''
+            }
+        case DELETE_FAILURE:
+            return{
+                ...state,
+                isFetching: false,
+                errors: action.payload
+            }
+        case START_VACATION_ADD:
+            return{
+                ...state,
+                isFetching: true,
+                errors:''
+            }
+        case VACATION_ADD_SUCCESS:
+            return{
+                ...state,
+                isFetching:false,
+                vacations: action.payload,
+                errors:''
+            }
+        case VACATION_ADD_FAILURE:
+            return{
+                ...state,
+                isFetching:false,
+                errors: action.payload
+            }
+        case START_VACATION_UPDATE:
+            return{
+                ...state,
+                isFetching:true,
+                errors:''
+            }
+        case VACATION_UPDATE_SUCCESS:
+            return{
+                ...state,
+                isFetching: false,
+                vacations: action.payload,
+                error:''
+            }
+        case VACATION_UPDATE_FAILURE:
+            return{
+                ...state,
+                isFetching:false,
+                errors: action.payload
+            }
+        case START_VACATION_DELETE:
+            return{
+                ...state,
+                isFetching: true,
+                err:''
+            }
+        case VACATION_SUCCESS_DELETE:
+            return{
+                ...state,
+                isFetching: false,
+                vacations: action.payload,
+                error:''
+            }
+        case VACATION_DELETE_FAILURE:
+            return{
+                ...state,
+                isFetching:false,
+                error: action.payload
+            }
+        case START_ACTIVITY:
+            return{
+                ...state,
+                isFetching: true,
+                err:''
+            }
+        case ACTIVITY_ADD_SUCCESS:
+            return{
+                ...state,
+                isFetching: false,
+                activities: action.payload,
+                error:''
+            }
+        case ACTIVITY_ADD_FAILURE:
+            return{
+                ...state,
+                isFetching:false,
+                error: action.payload
+            }
+        case UPDATE_ACTIVITY:
+            return{
+                ...state,
+                isFetching: true,
+                err:''
+            }
+        case ACTIVITY_UPDATE_SUCCESS:
+            return{
+                ...state,
+                isFetching: false,
+                activities: action.payload,
+                error:''
+            }
+        case ACTIVITY_UPDATE_FAILURE:
+            return{
+                ...state,
+                isFetching:false,
+                error: action.payload
+            }
+        case DELETE_ACTIVITY:
+            return{
+                ...state,
+                isFetching: true,
+                err:''
+            }
+        case ACTIVITY_DELETE_SUCCESS:
+            return{
+                ...state,
+                isFetching: false,
+                activities: action.payload,
+                error:''
+            }
+        case ACTIVITY_DELETE_FAILURE:
+            return{
+                ...state,
+                isFetching:false,
+                error: action.payload
+            }
+        case START_USER_ADD:
+            return{
+                ...state,
+                isFetching: true,
+                err:''
+            }
+        case USER_ADD_SUCCESS:
+            return{
+                ...state,
+                isFetching: false,
+                users: action.payload,
+                error:''
+            }
+        case USER_ADD_FAILURE:
+            return{
+                ...state,
+                isFetching:false,
+                error: action.payload
+            }
+        case UPDATE_USER:
+            return{
+                ...state,
+                isFetching: true,
+                err:''
+            }
+        case UPDATE_USER_SUCCESS:
+            return{
+                ...state,
+                isFetching: false,
+                users: action.payload,
+                error:''
+            }
+        case UPDATE_USER_FAILURE:
+            return{
+                ...state,
+                isFetching:false,
+                error: action.payload
+            }
+        case DELETE_USER:
+            return{
+                ...state,
+                isFetching: true,
+                err:''
+            }
+        case DELETE_USER_SUCCESS:
+            return{
+                ...state,
+                isFetching: false,
+                users: action.payload,
+                error:''
+            }
+        case DELETE_USER_FAILURE:
+            return{
+                ...state,
+                isFetching:false,
+                error: action.payload
+            }
         default:
             return state
     }

@@ -15,14 +15,14 @@ const Login = props => {
         setReturningUser({...returningUser, [name]: value})
     }
 
-    const submitReturningUser = (e, creds) => {
+    const submitReturningUser = (e) => {
         e.preventDefault();
-        // axios.post("https://vacation-planner-be.herokuapp.com/api/auth/login", creds)
         axiosWithAuth()
-        .post ('/auth/login', returningUser)
+        .post('/auth/login', returningUser)
             .then(res => {
-                props.history.push("/vacationDashboard");
-                localStorage.setItem("token", res.data.payload);
+                
+                localStorage.setItem("token", res.data.token);
+                props.history.push("/vacation");
             })
             .catch(err => console.log(err));
     }
@@ -34,15 +34,22 @@ const Login = props => {
             <StyledH3>Sign in here.</StyledH3>
             <Label>Enter Username</Label>
             <StyledInput
+                type='text'
                 name="username"
                 value={returningUser.username}
                 onChange={handleReturningUser}
+                placeholder='username'
             />
+
+      <Message>Valid username must be entered.</Message>
+
             <Label>Enter Password</Label>
             <StyledInput
+                type="password"
                 name="password"
                 value={returningUser.password}
                 onChange={handleReturningUser}
+                placeholder='password'
             />
             <StyledButton >Login</StyledButton>
         </StyledForm>
@@ -114,4 +121,10 @@ const StyledForm = Styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
+`;
+
+const Message = Styled.label`
+  margin-bottom: 2px;
+text-align: center;
+  color: red;
 `;

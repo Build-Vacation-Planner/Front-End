@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "name": "vacation",
+    "builds": [
+      {
+        "src": "vacation/package.json",
+        "use": "@now/static-build",
+        "config": { "distDir": "build" }
+      }
+    ],
+    "routes": [
+        { "src": "/(.*)", "dest": "vacation/$1" }
+      
+    ]
+  }

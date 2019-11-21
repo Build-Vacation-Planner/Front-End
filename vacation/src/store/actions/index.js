@@ -2,35 +2,50 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { connect } from 'react-redux'
 
 
+export const START_FETCH_USER = 'START_FETCH_USER'
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS'
+export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE'
+export const fetchUser = () => dispatch => {
+    dispatch({ type:START_FETCH_USER  })
+    axiosWithAuth()
+    .get('users/')
+    .then (res => dispatch({type:FETCH_USER_SUCCESS, payload: res.data}))
+    .catch (err => dispatch({ type: FETCH_USER_FAILURE, payload: err}))
+}
+
 export const START_VACATION_ADD = 'START_VACATION_ADD'
 export const VACATION_ADD_SUCCESS = 'VACATION_ADD_SUCCESS'
 export const VACATION_ADD_FAILURE = 'VACATION_ADD_FAILURE'
-export const getVaction = () => dispatch => {
-    dispatch({type:START_VACATION_ADD})
+export const addVacation = (props) => dispatch => {
+    console.log(`props`, props)
+    dispatch({ type:START_VACATION_ADD })
     axiosWithAuth()
-    .post('/auth/')
-    .then (res => dispatch({type:VACATION_ADD_SUCCESS, payload: res.data}))
-    .catch (err => dispatch({ type: VACATION_ADD_FAILURE, payload:err}))
+    
+    .post('vacations/', props )
+    .then(res => {
+        console.log(res); 
+        dispatch({ type:VACATION_ADD_SUCCESS, payload: res.data.vacations });
+      })    .catch (err => dispatch({ type: VACATION_ADD_FAILURE, payload:err}))
 }
 
 export const START_VACATION_UPDATE = 'START_VACATION_UPDATE'
 export const VACATION_UPDATE_SUCCESS = 'VACATION_UPDATE_SUCCESS'
 export const VACATION_UPDATE_FAILURE = 'VACATION_UPDATE_FAILURE'
-export const addVacation = () => dispatch => {
+export const updateVacation = (changes, id) => dispatch => {
     dispatch({type: START_VACATION_UPDATE })
     axiosWithAuth()
-    .put('/auth/')
-    .then (res => dispatch({type:VACATION_UPDATE_SUCCESS, payload: res.data}))
+    .put(`vacations/${id}`, changes)
+    .then (res => dispatch({type:VACATION_UPDATE_SUCCESS, payload: res.data.vacations}))
     .catch(err => dispatch({type: VACATION_ADD_FAILURE, payload: err}))
 }
 export const START_VACATION_DELETE = 'START_VACATION_DELETE'
 export const VACATION_SUCCESS_DELETE = 'VACATION_SUCCESS_DELETE'
 export const VACATION_DELETE_FAILURE = 'VACATION_DELETE_FAILURE'
-export const deleteVacation =() => dispatch => {
+export const deleteVacation = (id) => dispatch => {
     dispatch({type:START_VACATION_DELETE})
     axiosWithAuth()
-    .delete('/auth/')
-    .then (res => dispatch({type: VACATION_SUCCESS_DELETE, payload: res.data}))
+    .delete(`vacations/${id}`)
+    .then (res => dispatch({type: VACATION_SUCCESS_DELETE, payload: res.data.vacations}))
     .catch(err => dispatch({type: VACATION_DELETE_FAILURE, payload: err}))
 }
 
@@ -81,10 +96,10 @@ export const addActivity = () => dispatch => {
 export const UPDATE_ACTIVITY = 'UPDATE_ACTIVITY'
 export const ACTIVITY_UPDATE_SUCCESS = 'ACTIVITY_UPDATE_SUCCESS'
 export const ACTIVITY_UPDATE_FAILURE = 'ACTIVITY_UPDATE_FAILURE'
-export const updateActivity = () => dispatch => {
+export const updateActivity = (id) => dispatch => {
     dispatch({type: UPDATE_ACTIVITY})
     axiosWithAuth()
-    .put('/auth/')
+    .put(`vacations/${id}`)
     .then (res => dispatch({type: ACTIVITY_UPDATE_SUCCESS, payload: res.data}))
     .catch(err => dispatch({type: ACTIVITY_UPDATE_FAILURE, payload: err}))
 }
