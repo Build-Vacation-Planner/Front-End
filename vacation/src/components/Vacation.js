@@ -3,6 +3,7 @@ import Styled from "styled-components";
 import VacationCard from "./VacationCard";
 import NavBar from "./NavBar"
 import CommentCard from './CommentCard'
+import ActivityCard from './ActivityCard'
 import { connect } from "react-redux";
 import { addVacation, fetchUser} from '../store/actions'
 const Vacation = ({ user, fetchUser, addVacation, history }) => {
