@@ -125,5 +125,6 @@ const StyledForm = Styled.form`
 
 const Message = Styled.label`
   margin-bottom: 2px;
+text-align: center;
   color: red;
 `;
