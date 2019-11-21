@@ -58,14 +58,6 @@ const Login = props => {
     );
 }
 
-function validateUsername(username) {
-    let error;
-    if (username === 'admin') {
-      error = 'Nice try!';
-    }
-    return error;
-  }
-
 export default Login;
 
 const Label = Styled.label`
