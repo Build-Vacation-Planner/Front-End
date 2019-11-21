@@ -40,6 +40,9 @@ const Login = props => {
                 onChange={handleReturningUser}
                 placeholder='username'
             />
+
+      <Message>Valid username must be entered.</Message>
+
             <Label>Enter Password</Label>
             <StyledInput
                 type="password"
@@ -118,4 +121,9 @@ const StyledForm = Styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
+`;
+
+const Message = Styled.label`
+  margin-bottom: 2px;
+  color: red;
 `;
