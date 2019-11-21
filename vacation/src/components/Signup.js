@@ -47,10 +47,11 @@ const Signup = (props) => {
 
                         <br />
                     </Label>
-                    <label>
+                    <Label>
                         Create Password
                         <br />
-                        <input
+                        <Styledinput
+
                          type='password'
                          name='password'
                          placeholder='password'
@@ -61,7 +62,7 @@ const Signup = (props) => {
 
                         <br />
 
-                    </label>
+                    </Label>
                     {/* <label>
                         Confirm Password
                         <br />
