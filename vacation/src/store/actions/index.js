@@ -9,7 +9,9 @@ export const fetchUser = () => dispatch => {
     dispatch({ type:START_FETCH_USER  })
     axiosWithAuth()
     .get('users/')
-    .then (res => dispatch({type:FETCH_USER_SUCCESS, payload: res.data}))
+    .then (res => {
+        console.log(`res`, res)
+         dispatch({type:FETCH_USER_SUCCESS, payload: res.data})})
     .catch (err => dispatch({ type: FETCH_USER_FAILURE, payload: err}))
 }
 
@@ -31,10 +33,10 @@ export const addVacation = (props) => dispatch => {
 export const START_VACATION_UPDATE = 'START_VACATION_UPDATE'
 export const VACATION_UPDATE_SUCCESS = 'VACATION_UPDATE_SUCCESS'
 export const VACATION_UPDATE_FAILURE = 'VACATION_UPDATE_FAILURE'
-export const updateVacation = (changes, id) => dispatch => {
+export const updateVacation = (props, id) => dispatch => {
     dispatch({type: START_VACATION_UPDATE })
     axiosWithAuth()
-    .put(`vacations/${id}`, changes)
+    .put(`vacations/${id}`, props)
     .then (res => dispatch({type:VACATION_UPDATE_SUCCESS, payload: res.data.vacations}))
     .catch(err => dispatch({type: VACATION_ADD_FAILURE, payload: err}))
 }
@@ -118,10 +120,11 @@ export const deleteActivity = () => dispatch => {
 export const START_USER_ADD = 'START_USER_ADD'
 export const USER_ADD_SUCCESS = 'USER_ADD_SUCCESS'
 export const USER_ADD_FAILURE  = 'USER_ADD_FAILURE'
-export const addUser = () => dispatch => {
+export const addUser = (props, id) => dispatch => {
     dispatch({type: START_USER_ADD})
+    console.log(id)
     axiosWithAuth()
-    .post('/users/')
+    .post(`vacations/${id}/users`, props)
     .then (res => dispatch({type: USER_ADD_SUCCESS, payload: res.data}))
     .catch(err => dispatch({type: USER_ADD_FAILURE, payload: err}))
 }
