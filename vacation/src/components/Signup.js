@@ -4,8 +4,11 @@ import Styled from 'styled-components';
 import "./Signup.css";
 
 const Signup = () => {
-    const [newUser, setNewUser] = useState("");
-    const [password, setPassword] = useState("");
+    const [newUser, setNewUser] = useState({email: "", password: ""});
+
+    const handleChanges = event => {
+        setNewUser({...newUser, [event.target.name]: event.target.value});
+    };
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -21,13 +24,13 @@ const Signup = () => {
                     <Label>
                         Enter Email
                         <br />
-                        <StyledInput id="email" type="email" onChange={event => setNewUser(event.target.value)} />
+                        <StyledInput id="email" type="email" name="email" onChange={event => handleChanges(event)} />
                         <br />
                     </Label>
                     <label>
                         Create Password
                         <br />
-                        <input id="password" type="text" onChange={event => setPassword(event.target.value)} />
+                        <StyledInput id="password" type="text" name="password" onChange={event => handleChanges(event)} />
                         <br />
                     </label>
                     <label>
