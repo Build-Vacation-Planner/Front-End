@@ -45,13 +45,13 @@ const handleSubmit = () => {
 
     const renderCard = () => {
         return (<Card className="vacation-card">
-
+            <span>Click on idea to edit</span>
             <p><strong>Vacation idea: </strong><span name="name" onClick={handleEdit}>{vacation.name}</span></p>
             <p><strong>Place: </strong>{vacation.place}</p>
-           {/* {vacation.activities.map(i => {
+           {vacation.activities.map(i => {
                console.log(`i`, i)
-                return<p>{i.name}</p>
-            })} */}
+                return<p key={i.id}>{i.name}</p>
+            })}
 
             <p><strong>Dates: </strong>{ vacation.dates ? vacation.dates.start:""} - {vacation.dates ? vacation.dates.end:""} </p>
 
@@ -59,6 +59,7 @@ const handleSubmit = () => {
 
             <Link to={`/vacation/${vacation.id}`}>Details</Link>
             {edit? renderInput():null}
+            <div>add user</div>
         </Card>)
     }
     return (

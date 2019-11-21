@@ -121,7 +121,7 @@ export const USER_ADD_FAILURE  = 'USER_ADD_FAILURE'
 export const addUser = () => dispatch => {
     dispatch({type: START_USER_ADD})
     axiosWithAuth()
-    .post('/auth/')
+    .post('/users/')
     .then (res => dispatch({type: USER_ADD_SUCCESS, payload: res.data}))
     .catch(err => dispatch({type: USER_ADD_FAILURE, payload: err}))
 }
@@ -132,7 +132,7 @@ export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE'
 export const updateUser = () => dispatch => {
     dispatch({type: UPDATE_USER})
     axiosWithAuth()
-    .put('/auth/')
+    .put('users/')
     .then (res => dispatch({type: UPDATE_USER_SUCCESS, payload: res.data}))
     .catch(err => dispatch({type: UPDATE_USER_FAILURE, payload: err}))
 }
