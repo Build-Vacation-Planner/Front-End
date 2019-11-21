@@ -31,10 +31,10 @@ export const addVacation = (props) => dispatch => {
 export const START_VACATION_UPDATE = 'START_VACATION_UPDATE'
 export const VACATION_UPDATE_SUCCESS = 'VACATION_UPDATE_SUCCESS'
 export const VACATION_UPDATE_FAILURE = 'VACATION_UPDATE_FAILURE'
-export const updateVacation = (id) => dispatch => {
+export const updateVacation = (changes, id) => dispatch => {
     dispatch({type: START_VACATION_UPDATE })
     axiosWithAuth()
-    .put(`vacations/${id}`)
+    .put(`vacations/${id}`, changes)
     .then (res => dispatch({type:VACATION_UPDATE_SUCCESS, payload: res.data.vacations}))
     .catch(err => dispatch({type: VACATION_ADD_FAILURE, payload: err}))
 }
@@ -96,10 +96,10 @@ export const addActivity = () => dispatch => {
 export const UPDATE_ACTIVITY = 'UPDATE_ACTIVITY'
 export const ACTIVITY_UPDATE_SUCCESS = 'ACTIVITY_UPDATE_SUCCESS'
 export const ACTIVITY_UPDATE_FAILURE = 'ACTIVITY_UPDATE_FAILURE'
-export const updateActivity = () => dispatch => {
+export const updateActivity = (id) => dispatch => {
     dispatch({type: UPDATE_ACTIVITY})
     axiosWithAuth()
-    .put('/auth/')
+    .put(`vacations/${id}`)
     .then (res => dispatch({type: ACTIVITY_UPDATE_SUCCESS, payload: res.data}))
     .catch(err => dispatch({type: ACTIVITY_UPDATE_FAILURE, payload: err}))
 }

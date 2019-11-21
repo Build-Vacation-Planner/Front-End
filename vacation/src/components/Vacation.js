@@ -4,9 +4,8 @@ import VacationCard from "./VacationCard";
 import NavBar from "./NavBar"
 import CommentCard from './CommentCard'
 import { connect } from "react-redux";
-import { deleteVacation, addVacation, fetchUser, updateVacation} from '../store/actions'
-
-const Vacation = ({ user, fetchUser, addVacation, deleteVacation, updateVacation, history }) => {
+import { addVacation, fetchUser} from '../store/actions'
+const Vacation = ({ user, fetchUser, addVacation, history }) => {
 
     const [ newTrip, setNewTrip ] = useState({name: "", place: ""});
 
@@ -66,7 +65,7 @@ const Vacation = ({ user, fetchUser, addVacation, deleteVacation, updateVacation
             <Container>
                 {user.vacations.map(vacation => {
                 console.log(vacation)
-                return <VacationCard key={vacation.id} deleteVacation={deleteVacation} vacation={vacation}/>})
+                return <VacationCard key={vacation.id} vacation={vacation}/>})
                 }
                 <CommentCard />
             </Container>
@@ -82,7 +81,7 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, { deleteVacation, addVacation, fetchUser, updateVacation})(Vacation);
+export default connect(mapStateToProps, { addVacation, fetchUser, })(Vacation);
 
 
 
