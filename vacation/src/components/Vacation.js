@@ -71,6 +71,7 @@ const Vacation = ({ user, fetchUser, addVacation, history }) => {
                 return <VacationCard key={vacation.id} vacation={vacation}/>})
                 }
                 <CommentCard />
+                <ActivityCard />
             </Container>
         </div>
     );
