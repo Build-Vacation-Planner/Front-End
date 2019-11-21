@@ -18,6 +18,41 @@ const Nav = props => {
     );
 }
 
+const [usernames, setUsernames] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://vacation-planner-be.herokuapp.com/api/users/")
+      .then(response => {
+        setUsernames(response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log("The data was not returned", error);
+      });
+  }, []);
+
+  return (
+    <div className="username">
+      {users.map(user => {
+        return (
+          <div className="user"
+            key={users.id}
+            username={users.username}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+  return (
+    <div className="user-list">
+        <p>Hello, {props.username}</p>
+    </div>
+  );
+};
+
 export default Nav;
 
 const NavDiv = Styled.div`
