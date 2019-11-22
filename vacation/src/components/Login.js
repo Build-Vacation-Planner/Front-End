@@ -36,7 +36,8 @@ const Login = props => {
                 <div className="enter_form_top">
                     <h3>Sign in here</h3>
                     <label className="enter_label">Enter Username</label>
-                        <input 
+                        <input
+                    //correct={true}
                     type='text'
                     name="username"
                     value={returningUser.username}
@@ -49,6 +50,7 @@ const Login = props => {
 
                     <label className="enter_label">Enter Password</label>
                     <input
+                        //correct={false}
                         type="password"
                         name="password"
                         value={returningUser.password}
@@ -89,6 +91,7 @@ export default Login;
 //     background: #fff;
 //     border: 1px solid #fff;
 //     border-radius: 5px;
+//     background: ${prop => prop.correct ? 'white' : 'red'};
 // `;
 
 // const StyledH3 = Styled.h3`
