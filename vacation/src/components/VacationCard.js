@@ -77,7 +77,7 @@ const handleChange2 = (e) =>{
 
             <p><strong>Vacation idea: </strong><span  onClick={handleEdit}>{vacation.name}</span></p>
 
-            <p><strong>Place: </strong>{vacation.place}</p>
+            <p><strong>Activities: </strong>{vacation.place}</p>
            {vacation.activities.map(i => {
                console.log(`i`, i)
                 return<p key={i.id}>{i.name}</p>
