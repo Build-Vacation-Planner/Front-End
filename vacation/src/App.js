@@ -9,6 +9,7 @@ import CommentCard from "./components/CommentCard";
 import ActivityCard from "./components/ActivityCard";
 import Vacation from "./components/Vacation";
 
+
 function App() {
   return (
     <div className="App">

@@ -1,11 +1,20 @@
+.sunset_page {
+    background-image: url("../images/beautiful_sunset.jpeg");
+  }  
+  
+  .top {
+      display: flex;
+      justify-content: flex-end;
+      padding: 5%;
+      color: white;
+  }
+
 .form {
-    width: 300px;
+    width: 30%;
     margin: 0 auto;
-    position: relative;
+    position: absolute;
     text-align: left;
-    background: #f3f3f3;
     border: 1px solid #fff;
-    border-radius: 5px;
   }
   
   .form h2 {
@@ -19,7 +28,65 @@
     font-weight: 400;
     font-size: 14px;
     color: #F3F4F4;
-    background: #fff;
     border: 1px solid #fff;
     border-radius: 5px;
   }
+
+  .enter_form {
+      width: 45%;
+  }
+
+  .enter_form_top {
+      margin-bottom: 9%;
+  }
+
+  .enter_label {
+      width: 100%;
+      text-align: left;
+      float: left;
+  }
+  .enter_input {
+      background: transparent;
+      width: 100%;
+      height: 28px;
+      color: white;
+      margin-bottom: 5%;
+      border: 2px solid white;
+  }
+
+  ::placeholder {
+    color: white;
+  }
+
+  .enter_button {
+      width: 100%;
+      height: 40px;
+      background: black;
+      color: white;
+      
+  }
+
+  .already {
+      color: black;
+  }
+
+  .footer {
+    position: fixed;
+    left:0px;
+    bottom:25%;
+    height:30px;
+    width:100%;
+    color: white;
+    font-family: "open sans";
+
+ }
+
+ .vac_plan_foot_text {
+    line-height: 100%;
+    font-size: 150px;
+     width: 100%;
+     x: 0px;
+     y: 841px;
+ }
+
+ 
