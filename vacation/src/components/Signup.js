@@ -50,7 +50,7 @@ const Signup = (props) => {
                     <Label>
                         Create Password
                         <br />
-                        <Styledinput
+                        <StyledInput
 
                          type='password'
                          name='password'

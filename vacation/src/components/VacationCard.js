@@ -4,6 +4,7 @@ import Styled from "styled-components";
 import { useDispatch } from 'react-redux'
 import { connect } from "react-redux";
 import { deleteVacation, fetchUser, updateVacation, addUser } from '../store/actions'
+import ActivityCard from "./ActivityCard";
 
 const VacationCard = ({user, fetchUser, vacation}) => {
     // console.log(vacation)
@@ -86,7 +87,8 @@ const handleChange2 = (e) =>{
 
             <button onClick={() => dispatch(deleteVacation(vacation.id))}>Delete</button>
 
-            <Link to={`/vacation/${vacation.id}`}>Details</Link>
+            <Link to={`/commentcard/${vacation.id}`}>Comments</Link>
+            <Link to={`/activitycard/${vacation.id}`}>Activites</Link>
 
             {edit? renderInput():null}
             
@@ -98,7 +100,8 @@ const handleChange2 = (e) =>{
             { vacation.users.length ? <p>{vacation.users.map(m => m.username)}</p> : null}
                 
             </div>
-        </Card>)
+        </Card>
+        )
     }
     return (
         <>
@@ -114,7 +117,7 @@ const mapStateToProps = state => {
         user: state.vacations
     }
 }
-export default connect(mapStateToProps,{fetchUser})(VacationCard);
+export default connect(mapStateToProps, {fetchUser})(VacationCard);
 
 const Card = Styled.div`
     border: black solid 2px;

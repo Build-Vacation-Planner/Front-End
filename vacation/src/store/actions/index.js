@@ -84,15 +84,15 @@ export const deleteComment = () => dispatch => {
     .then (res => dispatch({type: DELETE_SUCCESS, payload: res.data}))
     .catch(err => dispatch({type: DELETE_FAILURE, payload: err}))
 }
-
+////////////////////////////////////////////////////////////////////////////////////////
 export const START_ACTIVITY = 'START_ACTIVITY'
 export const ACTIVITY_ADD_SUCCESS = 'ACTIVITY_ADD_SUCCESS'
 export const ACTIVITY_ADD_FAILURE = 'ACTIVITY_ADD_DELETE'
-export const addActivity = () => dispatch => {
+export const addActivity = (props, id) => dispatch => {
     dispatch({type: START_ACTIVITY})
     axiosWithAuth()
-    .post('/auth/')
-    .then (res => dispatch({type: ACTIVITY_ADD_SUCCESS, payload: res.data}))
+    .post(`vacations/${id}/activities`, props)
+    .then (res => dispatch({type: ACTIVITY_ADD_SUCCESS, payload: res.data.activities}))
     .catch(err => dispatch({type: ACTIVITY_ADD_FAILURE, payload: err}))
 }
 export const UPDATE_ACTIVITY = 'UPDATE_ACTIVITY'
