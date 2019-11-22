@@ -37,7 +37,7 @@ const Vacation = ({ user, fetchUser, addVacation, history }) => {
     <div>
       <NavBar history={history} />
       <img src={user.avatar}/>
-      <h2>{user.user}</h2>
+      <h2>{user.username}</h2>
       <h2>My Trips</h2>
       <div>
         <StyledForm onSubmit={e => handleSubmit(e, newTrip)}>
