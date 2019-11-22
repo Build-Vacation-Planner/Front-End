@@ -92,7 +92,11 @@ export const addActivity = (props, id) => dispatch => {
     dispatch({type: START_ACTIVITY})
     axiosWithAuth()
     .post(`vacations/${id}/activities`, props)
-    .then (res => dispatch({type: ACTIVITY_ADD_SUCCESS, payload: res.data.activities}))
+    .then (res => {
+        // console.log(res.data.vacations[1].activities)
+        dispatch({type: ACTIVITY_ADD_SUCCESS, payload: res.data.vacations[1].activities})
+    })
+    
     .catch(err => dispatch({type: ACTIVITY_ADD_FAILURE, payload: err}))
 }
 export const UPDATE_ACTIVITY = 'UPDATE_ACTIVITY'

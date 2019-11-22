@@ -6,7 +6,7 @@ import { fetchUser, addActivity, updateActivity, deleteActivity, addVacation } f
 import CCard from './CCard'
 
 
-const ActivityCard = ({user, fetchUser, addActivity, match}) => {
+const ActivityCard = ({activities, fetchUser, addActivity, match}) => {
     const [activityInput, setActivityInput] = useState('');
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const handleSubmit = e => {
     setActivityInput('')
 };
 
-console.log(user)
+console.log(activities)
 
 const renderCard2 = () => {
     return (
@@ -54,29 +54,23 @@ const renderCard2 = () => {
 
 
         <div>
-            {console.log(user)}
+            {console.log(activities)}
             {/* {user.vacations > 0  ? console.log(user.vacations[2]) : null} */}
-            {user.length ? <h3>{user.activities.map(activity => activity.name)}</h3> : null}
+            <h3>{activities.map(activity => activity.name)}</h3> 
         </div>
         </div>
     )
 }
 return(
     <>
-    { user ? renderCard2() : null }
+    { activities ? renderCard2() : null }
     </>
 )
 }
 
-
-
-
-
-
-
 const mapStateToProps = state => {
     return{
-        user: state
+        activities: state.vacations
     }
 }
 
@@ -96,6 +90,7 @@ const StyledForm = Styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
 `;
 
 const StyledButton = Styled.button`
@@ -125,4 +120,5 @@ const ActivityInput = Styled.input`
     background: #fff;
     border: 1px solid #fff;
     border-radius: 5px;
+    margin-top: 20px;
 `;

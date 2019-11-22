@@ -68,4 +68,5 @@ const CommentInput = Styled.input`
     background: #fff;
     border: 1px solid #fff;
     border-radius: 5px;
+    margin-top: 20px;
 `;

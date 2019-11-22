@@ -96,6 +96,8 @@ const handleChange2 = (e) =>{
             {edit2? renderInput2():null}
             <p> Added to the trip</p>
             <div>
+
+                
             {/* { vacation.users.length ? <p>{vacation.users[0].username}</p> : null} */}
             { vacation.users.length ? <p>{vacation.users.map(m => m.username)}</p> : null}
                 
