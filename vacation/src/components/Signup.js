@@ -42,6 +42,7 @@ const Signup = (props) => {
                             onChange={changeHandler}
                             className="enter_input"
                             
+                            
                             />
 
                             
