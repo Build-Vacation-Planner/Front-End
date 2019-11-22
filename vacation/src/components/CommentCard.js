@@ -12,7 +12,9 @@ const CommentCard = () => {
         console.log(commentInput);
     }
     return (
+
         <div>
+            <h1>Comments</h1>
             <StyledForm method="post" className="comment_form" onSubmit={event => handleSubmit(event)}>
                 <CommentInput id="comment_input" className="expanded_text_area" type="text" placeholder="Add comment..." onChange={event => {
             setCommentInput(event.target.value);

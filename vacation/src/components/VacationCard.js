@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { connect } from "react-redux";
 import { deleteVacation, fetchUser, updateVacation, addUser } from '../store/actions'
 import ActivityCard from "./ActivityCard";
-
+import './VacationCard.css'
 const VacationCard = ({user, fetchUser, vacation}) => {
     // console.log(vacation)
     // console.log(vacation.dates)
@@ -72,7 +72,7 @@ const handleChange2 = (e) =>{
     }
     console.log(user[0].users)
     const renderCard = () => {
-        return (<Card className="vacation-card">
+        return (<Card className="vacation-card" >
             <span>Click on idea to edit</span>
 
             <p><strong>Vacation idea: </strong><span  onClick={handleEdit}>{vacation.name}</span></p>
@@ -88,7 +88,7 @@ const handleChange2 = (e) =>{
             <button onClick={() => dispatch(deleteVacation(vacation.id))}>Delete</button>
 
             <Link to={`/commentcard/${vacation.id}`}>Comments</Link>
-            <Link to={`/activitycard/${vacation.id}`}>Activites</Link>
+            <Link to={`/activitycard/${vacation.id}`}>Activities</Link>
 
             {edit? renderInput():null}
             
