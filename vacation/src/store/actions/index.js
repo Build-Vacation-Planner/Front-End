@@ -87,7 +87,7 @@ export const deleteComment = () => dispatch => {
 ////////////////////////////////////////////////////////////////////////////////////////
 export const START_ACTIVITY = 'START_ACTIVITY'
 export const ACTIVITY_ADD_SUCCESS = 'ACTIVITY_ADD_SUCCESS'
-export const ACTIVITY_ADD_FAILURE = 'ACTIVITY_ADD_DELETE'
+export const ACTIVITY_ADD_FAILURE = 'ACTIVITY_ADD_FAILURE'
 export const addActivity = (props, id) => dispatch => {
     dispatch({type: START_ACTIVITY})
     axiosWithAuth()

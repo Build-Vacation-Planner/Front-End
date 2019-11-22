@@ -6,8 +6,8 @@ import { fetchUser, addActivity, updateActivity, deleteActivity, addVacation } f
 import CCard from './CCard'
 
 
-const ActivityCard = ({user, fetchUser, addActivity}) => {
-    const [activityInput, setActivityInput] = useState({name:''});
+const ActivityCard = ({user, fetchUser, addActivity, match}) => {
+    const [activityInput, setActivityInput] = useState('');
 
     useEffect(() => {
         fetchUser()
@@ -15,34 +15,36 @@ const ActivityCard = ({user, fetchUser, addActivity}) => {
     
 // const dispatch = useDispatch()
 
-const handleChange = e => {
-    const { name, value } = e.target;
-    setActivityInput({...activityInput, [name]: value})
+const handleChange4 = e => {
+    
+    setActivityInput(e.target.value)
 }
 
 const handleSubmit = e => {
     e.preventDefault()
-    addActivity(activityInput)
-    setActivityInput({name:''})
+    console.log(match)
+    addActivity({name:activityInput}, match.params.id)
+    setActivityInput('')
 };
 
 console.log(user)
+
 const renderCard2 = () => {
     return (
         <div>
-            <h1>working</h1>
+            <h1>Activities</h1>
         <div>
             
-            <StyledForm onSubmit={e => handleSubmit(e, ActivityInput)} className="activity_form">
+            <StyledForm onSubmit={handleSubmit} className="activity_form">
 
                 <ActivityInput 
-                id="activity_input" 
-                className="expanded_text_area" 
-                name='comments'
+                // id="activity_input" 
+                // className="expanded_text_area" 
+                name='name'
                 type="text" 
-                value={activityInput.name}
+                value={activityInput}
                 placeholder="Add activity..." 
-                onChange={handleChange}
+                onChange={handleChange4}
             />
                 <br />
                 <StyledButton>Post</StyledButton>
@@ -52,9 +54,9 @@ const renderCard2 = () => {
 
 
         <div>
-
-            {console.log(user.activities)}
-            {/* {user.activities.length ? <h3>{user.activities.map(activity => activity.name)}</h3> : null} */}
+            {console.log(user)}
+            {/* {user.vacations > 0  ? console.log(user.vacations[2]) : null} */}
+            {user.length ? <h3>{user.activities.map(activity => activity.name)}</h3> : null}
         </div>
         </div>
     )
@@ -74,7 +76,7 @@ return(
 
 const mapStateToProps = state => {
     return{
-        user: state.vacations
+        user: state
     }
 }
 
